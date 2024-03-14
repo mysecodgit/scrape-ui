@@ -57,7 +57,7 @@ export default function Home() {
     const targetDate = new Date(dateString);
 
     // Calculate the time difference in milliseconds
-    const timeDiffMs = currentDate - targetDate;
+    const timeDiffMs = (currentDate as any) - (targetDate as any);
 
     // Convert the time difference to days
     const timeDiffDays = Math.floor(timeDiffMs / (1000 * 60 * 60 * 24));
@@ -136,14 +136,14 @@ export default function Home() {
         </div>
       </div>
       <div className="py-[6vh] pl-12 flex-1 h-[100vh] overflow-auto pr-3 scroll-container">
-        {result.map((influencer) => {
+        {result.map((influencer,index) => {
           return (
-            <div className="bg-[#3a3e41] w-full px-5 py-3 rounded mb-3">
+            <div key={index} className="bg-[#3a3e41] w-full px-5 py-3 rounded mb-3">
               <h4 className="mb-2">{influencer.influencerName}</h4>
               <div className="flex gap-3 max-w-[624px] overflow-x-auto custom-scrollbar pb-3">
-                {influencer.data.map((day) => {
+                {influencer.data.map((day,index) => {
                   return (
-                    <div className="min-w-[100px] cursor-pointer relative">
+                    <div key={index} className="min-w-[100px] cursor-pointer relative">
                       {day.isImportant && (
                         <span className="absolute  bg-yellow-300 h-5 w-5 rounded-full text-black flex justify-center items-center">
                           &#9733;
